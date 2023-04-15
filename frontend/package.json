@@ -25,5 +25,8 @@
     "react-dom": "18.2.0",
     "typescript": "5.0.4",
     "yup": "^1.1.0"
+  },
+  "devDependencies": {
+    "miragejs": "^0.1.47"
   }
 }
