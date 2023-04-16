@@ -1,7 +1,10 @@
-import * as React from 'react';
+import React, {
+  useState, useEffect, useRef, useCallback, ReactNode,
+} from 'react';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
+import { Typography } from '@mui/material';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
@@ -68,13 +71,13 @@ const DEFAULT_ORDER = 'asc';
 const DEFAULT_ORDER_BY = 'deferral_days';
 
 const CustomersTable = () => {
-  const [order, setOrder] = React.useState<Order>(DEFAULT_ORDER);
-  const [orderBy, setOrderBy] = React.useState<string>(DEFAULT_ORDER_BY);
-  const [selected, setSelected] = React.useState<readonly string[]>([]);
-  const [rows, setRows] = React.useState([]);
-  const [visibleRows, setVisibleRows] = React.useState<Data[] | null>(null);
+  const [order, setOrder] = useState<Order>(DEFAULT_ORDER);
+  const [orderBy, setOrderBy] = useState<string>(DEFAULT_ORDER_BY);
+  const [selected, setSelected] = useState<readonly string[]>([]);
+  const [rows, setRows] = useState([]);
+  const [visibleRows, setVisibleRows] = useState<Data[] | null>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const rowsOnMount = stableSort(
       rows,
       getComparator(DEFAULT_ORDER, DEFAULT_ORDER_BY),
@@ -82,13 +85,13 @@ const CustomersTable = () => {
     setVisibleRows(rowsOnMount);
   }, [rows]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetch('api/customers')
       .then(res => res.json())
       .then(json => setRows(json.customers));
   }, []);
 
-  const handleRequestSort = React.useCallback(
+  const handleRequestSort = useCallback(
     (event: React.MouseEvent<unknown>, newOrderBy: string) => {
       const isAsc = orderBy === newOrderBy && order === 'asc';
       const toggledOrder = isAsc ? 'desc' : 'asc';
@@ -135,7 +138,7 @@ const CustomersTable = () => {
 
   const isSelected = (name: string) => selected.indexOf(name) !== -1;
 
-  const refs = React.useRef([]);
+  const refs = useRef([]);
 
   const copyId = (index: number) => {
     const ref = refs.current[index];

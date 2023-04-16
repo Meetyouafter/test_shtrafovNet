@@ -67,7 +67,7 @@ const CustomerTableHead = (props: TableProps) => {
   };
 
   return (
-    <TableHead>
+    <TableHead sx={{ backgroundColor: 'lightgray' }}>
       <TableRow>
         <TableCell padding="checkbox">
           <Checkbox
