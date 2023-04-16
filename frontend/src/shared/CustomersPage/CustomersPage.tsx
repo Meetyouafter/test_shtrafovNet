@@ -1,12 +1,12 @@
-import React from "react";
-import { Container, Grid, Typography, Button, FormControl, OutlinedInput, InputAdornment, FormHelperText,
-  InputLabel, } from "@mui/material";
-import IconButton from '@mui/material/IconButton';
+import React from 'react';
+import {
+  Container, Grid, Typography, FormControl, OutlinedInput, InputAdornment, InputLabel,
+} from '@mui/material';
+import CustomersTable from '../Table/Table';
+import Modal from '../Modal/Modal';
 import styles from './customers.module.css';
-import CustomersTable from "../Table/Table";
-import Modal from "../Modal/Modal";
 
-const Customers = () => (
+const CustomersPage = () => (
   <Container className={styles.wrapper}>
     <Grid container>
       <Grid item xs={12}>
@@ -15,7 +15,7 @@ const Customers = () => (
           <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
-            type='text'
+            type="text"
             endAdornment={<InputAdornment position="end">kg</InputAdornment>}
             label="Password"
           />
@@ -27,6 +27,6 @@ const Customers = () => (
       </Grid>
     </Grid>
   </Container>
-)
+);
 
-export default Customers;
+export default CustomersPage;
