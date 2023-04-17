@@ -1,10 +1,9 @@
 import React, {
-  useState, useEffect, useRef, useCallback, ReactNode,
+  useState, useEffect, useRef, useCallback,
 } from 'react';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
-import { Typography } from '@mui/material';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
@@ -70,26 +69,19 @@ function stableSort<T>(
 const DEFAULT_ORDER = 'asc';
 const DEFAULT_ORDER_BY = 'deferral_days';
 
-const CustomersTable = () => {
+const CustomersTable = ({ customers }) => {
   const [order, setOrder] = useState<Order>(DEFAULT_ORDER);
   const [orderBy, setOrderBy] = useState<string>(DEFAULT_ORDER_BY);
   const [selected, setSelected] = useState<readonly string[]>([]);
-  const [rows, setRows] = useState([]);
   const [visibleRows, setVisibleRows] = useState<Data[] | null>(null);
 
   useEffect(() => {
     const rowsOnMount = stableSort(
-      rows,
+      customers,
       getComparator(DEFAULT_ORDER, DEFAULT_ORDER_BY),
     );
     setVisibleRows(rowsOnMount);
-  }, [rows]);
-
-  useEffect(() => {
-    fetch('api/customers')
-      .then(res => res.json())
-      .then(json => setRows(json.customers));
-  }, []);
+  }, [customers]);
 
   const handleRequestSort = useCallback(
     (event: React.MouseEvent<unknown>, newOrderBy: string) => {
@@ -99,17 +91,17 @@ const CustomersTable = () => {
       setOrderBy(newOrderBy);
 
       const sortedRows = stableSort(
-        rows,
+        customers,
         getComparator(toggledOrder, newOrderBy),
       );
       setVisibleRows(sortedRows);
     },
-    [order, orderBy, rows],
+    [order, orderBy, customers],
   );
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelected = rows.map(n => n.id);
+      const newSelected = rocustomersws.map(n => n.id);
       setSelected(newSelected);
       return;
     }
@@ -161,7 +153,7 @@ const CustomersTable = () => {
               orderBy={orderBy}
               onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
-              rowCount={rows.length}
+              rowCount={customers.length}
             />
             <TableBody>
               {visibleRows

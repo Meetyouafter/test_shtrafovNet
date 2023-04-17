@@ -9,7 +9,7 @@ const OrganizationData = () => {
   const { values, errors, handleChange }: FormikContextType<IFormValues> = useFormikContext();
 
   return (
-    <Form>
+    <div>
       <Typography>* Название организации</Typography>
       <TextField
         id="org_name"
@@ -55,7 +55,7 @@ const OrganizationData = () => {
         error={!!errors.org_adress}
         helperText={errors.org_adress}
       />
-    </Form>
+    </div>
   );
 };
 

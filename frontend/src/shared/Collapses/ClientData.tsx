@@ -9,7 +9,7 @@ const ClientData = () => {
   const { values, errors, handleChange }: FormikContextType<IFormValues> = useFormikContext();
 
   return (
-    <Form>
+    <div>
       <Typography>* Имя</Typography>
       <TextField
         id="name"
@@ -46,7 +46,7 @@ const ClientData = () => {
         error={!!errors.credit_limit}
         helperText={errors.credit_limit}
       />
-    </Form>
+    </div>
   );
 };
 

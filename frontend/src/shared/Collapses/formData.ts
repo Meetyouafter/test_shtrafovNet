@@ -19,7 +19,11 @@ export interface IFormValues {
       is_default: boolean,
     },
   ],
-  account_emails: string[],
+  account_emails: [
+    {
+      email: string,
+    },
+  ],
 }
 
 const formValues: IFormValues = {
@@ -41,12 +45,16 @@ const formValues: IFormValues = {
       is_default: false,
     },
   ],
-  account_emails: [],
+  account_emails: [
+    {
+      email: '',
+    },
+  ],
 };
 
 const formSchema = Yup.object().shape({
   name: Yup.string().required('Введите Имя'),
-  email: Yup.string().email().required('Введите Email'),
+  email: Yup.string().email('Введите корректный адрес').required('Введите Email'),
   deferral_days: Yup.number().required(
     'Дни отсрочки должны быть больше или равны нулю',
   ),
@@ -70,7 +78,9 @@ const formSchema = Yup.object().shape({
     }),
   ),
   account_emails: Yup.array().of(
-    Yup.string().email().required('Введите Email'),
+    Yup.object().shape({
+      email: Yup.string().email('Введите корректный адрес').required('Введите Email'),
+    }),
   ),
 });
 
