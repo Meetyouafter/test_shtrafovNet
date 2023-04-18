@@ -8,9 +8,14 @@ import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Collapses from '../Collapses/Collapses';
-import { formSchema, formValues } from '../Collapses/formData';
+import { IFormValues, formSchema, formValues } from '../Collapses/formData';
 
-const Modal = ({ customers, setCustomers }) => {
+interface ModalProps {
+  customers: IFormValues[],
+  setCustomers: (n: IFormValues[]) => void,
+}
+
+const Modal = ({ customers, setCustomers }: ModalProps) => {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -20,34 +25,40 @@ const Modal = ({ customers, setCustomers }) => {
     setOpen(false);
   };
 
-  const sendData = (values, errors) => {
-    fetch('api/customers', {
-      method: 'POST',
-      body: JSON.stringify(values),
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
+  const sendData = (values: IFormValues, validateForm: any, isValid: boolean) => {
+    validateForm();
+    if (isValid) {
+      fetch('api/customers', {
+        method: 'POST',
+        body: JSON.stringify(values),
       })
-      .then(data => {
-        setCustomers([...customers, data]);
-      })
-      .catch(error => {
-        throw new Error('There was a problem with the fetch operation:', error);
-      });
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          setCustomers([...customers, data]);
+        })
+        .catch(error => {
+          throw new Error('There was a problem with the fetch operation:', error);
+        });
+      handleClose();
+    }
   };
 
   return (
     <Formik
       initialValues={formValues}
       validationSchema={formSchema}
-      onSubmit={values => console.log(values)}
+      onSubmit={values => values}
+      validateOnChange={false}
     >
       {({
         values,
-        errors,
+        validateForm,
+        isValid,
       }) => (
         <>
           <Button variant="contained" onClick={handleClickOpen}>
@@ -79,7 +90,7 @@ const Modal = ({ customers, setCustomers }) => {
               </Form>
             </DialogContent>
             <DialogActions sx={{ justifyContent: 'flex-start' }}>
-              <Button variant="contained" type="button" onClick={() => sendData(values, errors)}>
+              <Button variant="contained" type="button" onClick={() => sendData(values, validateForm, isValid)}>
                 Создать
               </Button>
             </DialogActions>

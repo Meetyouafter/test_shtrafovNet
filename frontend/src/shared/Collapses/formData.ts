@@ -13,7 +13,7 @@ export interface IFormValues {
   bank_accounts: [
     {
       name: string,
-      number: string,
+      account_number: string,
       bik: string,
       corr_number: string,
       is_default: boolean,
@@ -39,7 +39,7 @@ const formValues: IFormValues = {
   bank_accounts: [
     {
       name: '',
-      number: '',
+      account_number: '',
       bik: '',
       corr_number: '',
       is_default: false,
@@ -69,7 +69,7 @@ const formSchema = Yup.object().shape({
   bank_accounts: Yup.array().of(
     Yup.object().shape({
       name: Yup.string().required('Введите название счета'),
-      number: Yup.number().required('Введите номер счета'),
+      account_number: Yup.number().required('Введите номер счета'),
       bik: Yup.number().required('Введите БИК счета'),
       corr_number: Yup.number().required(
         'Введите Корр. номер счета',

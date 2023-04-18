@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
-import { Form, Formik } from 'formik';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import { styled } from '@mui/material/styles';
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
@@ -11,7 +10,6 @@ import MuiAccordionSummary, {
 import Typography from '@mui/material/Typography';
 import AccountEmails from './AccountEmails';
 import ClientData from './ClientData';
-import { formSchema, formValues } from './formData';
 import OrganizationData from './OrganizationData';
 import BankAccounts from './BankAccounts';
 
@@ -68,53 +66,53 @@ const Collapses = () => {
   };
 
   return (
-        <div>
-          <Accordion expanded={expanded1} onChange={handleChange('panel1')}>
-            <AccordionSummary
-              aria-controls="panel1d-content"
-              id="panel1d-header"
-            >
-              <Typography>Детали клиента</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <ClientData />
-            </AccordionDetails>
-          </Accordion>
-          <Accordion expanded={expanded2} onChange={handleChange('panel2')}>
-            <AccordionSummary
-              aria-controls="panel2d-content"
-              id="panel2d-header"
-            >
-              <Typography>Детали организации</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <OrganizationData />
-            </AccordionDetails>
-          </Accordion>
-          <Accordion expanded={expanded3} onChange={handleChange('panel3')}>
-            <AccordionSummary
-              aria-controls="panel3d-content"
-              id="panel3d-header"
-            >
-              <Typography>Банковские счета</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <BankAccounts />
-            </AccordionDetails>
-          </Accordion>
-          <Accordion expanded={expanded4} onChange={handleChange('panel4')}>
-            <AccordionSummary
-              aria-controls="panel4d-content"
-              id="panel4d-header"
-            >
-              <Typography>Emails для счетов</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>* Email</Typography>
-              <AccountEmails />
-            </AccordionDetails>
-          </Accordion>
-        </div>
+    <div>
+      <Accordion expanded={expanded1} onChange={handleChange('panel1')}>
+        <AccordionSummary
+          aria-controls="panel1d-content"
+          id="panel1d-header"
+        >
+          <Typography>Детали клиента</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <ClientData />
+        </AccordionDetails>
+      </Accordion>
+      <Accordion expanded={expanded2} onChange={handleChange('panel2')}>
+        <AccordionSummary
+          aria-controls="panel2d-content"
+          id="panel2d-header"
+        >
+          <Typography>Детали организации</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <OrganizationData />
+        </AccordionDetails>
+      </Accordion>
+      <Accordion expanded={expanded3} onChange={handleChange('panel3')}>
+        <AccordionSummary
+          aria-controls="panel3d-content"
+          id="panel3d-header"
+        >
+          <Typography>Банковские счета</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <BankAccounts />
+        </AccordionDetails>
+      </Accordion>
+      <Accordion expanded={expanded4} onChange={handleChange('panel4')}>
+        <AccordionSummary
+          aria-controls="panel4d-content"
+          id="panel4d-header"
+        >
+          <Typography>Emails для счетов</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>* Email</Typography>
+          <AccountEmails />
+        </AccordionDetails>
+      </Accordion>
+    </div>
   );
 };
 

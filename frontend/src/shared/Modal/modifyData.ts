@@ -1,4 +1,4 @@
-import { IFormValues } from "../Collapses/formData"
+import { IFormValues } from '../Collapses/formData';
 
 interface PostData {
   name: string,
@@ -35,9 +35,12 @@ interface PostData {
 const modifyData = (values: IFormValues): PostData => {
   const data = {
     name: values.name,
+    id: 'y6v47z-zhuje',
     email: values.email,
     deferral_days: values.deferral_days,
     credit_limit: values.credit_limit,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
     organization: {
       name: values.org_name,
       inn: values.org_inn,

@@ -97,6 +97,7 @@ a {
 
 .MuiFormControl-root {
   justify-content: center;
+  max-width: 223px;
 }
 
 @media (prefers-color-scheme: dark) {

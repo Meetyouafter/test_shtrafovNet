@@ -41,11 +41,11 @@ const AccountEmails = () => {
                       <Typography>* Номер счета</Typography>
                       <TextField
                         id="number"
-                        name={`bank_accounts.${index}.number`}
-                        value={account.number}
-                        error={errors.bank_accounts?.[index]?.number}
-                        helperText={errors.bank_accounts?.[index]?.number}
-                        onChange={e => handleAccountChange(e, index, 'number')}
+                        name={`bank_accounts.${index}.account_number`}
+                        value={account.account_number}
+                        error={errors.bank_accounts?.[index]?.account_number}
+                        helperText={errors.bank_accounts?.[index]?.account_number}
+                        onChange={e => handleAccountChange(e, index, 'account_number')}
                       />
                       <Typography>* БИК счета</Typography>
                       <TextField

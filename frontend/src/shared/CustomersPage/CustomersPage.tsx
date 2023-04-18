@@ -23,7 +23,7 @@ const CustomersPage = () => {
         </Grid>
         <Grid item container xs={6} sx={{ height: '50px', alignItems: 'center', justifyContent: 'flex-end' }}>
           <FormControl size="small" sx={{ width: '150px' }} variant="outlined">
-            <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+            <InputLabel htmlFor="outlined-adornment-search">Поиск</InputLabel>
             <OutlinedInput
               id="outlined-adornment-search"
               type="text"
